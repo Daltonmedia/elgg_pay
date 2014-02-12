@@ -138,7 +138,8 @@ function pay_get_basket(){
  * Payment Items
  *
  * Plugins can add items to the basket by using pay_basket_add_button(...); on any pay or view
- * @todo: make this a form rather than a link
+ * @todo: make this a form rather than a link (important! Users can change price in url)
+ * @todo: finish expirationdate, so dat if object is subscription, ex.date is added (default 12months)
  */
 function pay_basket_add_button($type_guid, $title, $description, $price, $quantity, $subscription = false, $recurring = false){
 	 $currecy = pay_get_currency();	 
