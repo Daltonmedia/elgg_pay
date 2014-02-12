@@ -20,7 +20,7 @@ $seller_guid = get_input("seller_guid", $type->owner_guid);
 $recurring = get_input("recurring", 'n');
 $subscription = get_input("subscription", 'n');
 $expirationdate = get_input("expirationdate", '12');
-
+// Make the object
 $item = new ElggObject();
 $item->type = 'object';
 $item->subtype = 'pay_basket';
