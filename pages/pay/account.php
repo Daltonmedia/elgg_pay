@@ -8,6 +8,11 @@ elgg_load_library('elgg:pay');
 
 //elgg_set_context('settings');
 
+$username = get_input('username', elgg_get_logged_in_user_entity()->username);
+$user = $username ? get_user_by_username($username) : elgg_get_logged_in_user_entity();
+
+elgg_set_page_owner_guid($user->guid);
+
 pay_breadcrumb();
 
 elgg_push_breadcrumb(elgg_echo('pay:account'), 'pay/account');
@@ -17,19 +22,18 @@ $limit = get_input("limit", 10);
 
 $title = elgg_echo('pay:account');
 
-
-$content = elgg_list_entities(array(
+$content = elgg_list_entities_from_metadata(array(
 	'types' => 'object',
 	'subtypes' => 'pay',
 	'limit' => $limit,
 	'full_view' => FALSE,
-	
+        'list_type' => 'list',
+	'owner_guid' => elgg_get_page_owner_guid(),
+	'metadata_name_value_pairs' => array('name' => 'order', 'value' => true),
 ));
 
-$content .= pay_basket_add_button(null, 'A test item', 'a test description', 100, 1);
-
 if (!$content) {
-	$content = elgg_echo('pay:account:none');
+	$content = elgg_echo('nogniks');
 }
 
 $body = elgg_view_layout('content', array(

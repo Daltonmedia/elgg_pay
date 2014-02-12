@@ -30,6 +30,8 @@ elgg_register_menu_item('title', array(
 	'link_class' => 'elgg-button elgg-button-action',
 	'is_action' => true,
 ));
+//for now we are just going to forward to the payment
+//forward(elgg_add_action_tokens_to_url('action/pay/checkout'));
 }
 
 
